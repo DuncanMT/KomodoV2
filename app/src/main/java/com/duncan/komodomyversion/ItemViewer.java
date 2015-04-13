@@ -189,7 +189,7 @@ public class ItemViewer extends Activity {
     }
 
     private PayPalPayment getThingToBuy(String paymentIntent) {
-        return new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
+        return new PayPalPayment(new BigDecimal("5.00"), "GBP", "HDMI Cable",
                 paymentIntent);
     }
 
