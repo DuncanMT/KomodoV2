@@ -1,5 +1,6 @@
 package com.duncan.komodomyversion;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 
@@ -90,5 +92,16 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public void test2(View v){
+        Intent i = new Intent(v.getContext(), ItemViewer.class);
+        i.putExtra("cableTitle", "Monster HDMI 2m 1.4");
+        i.putExtra("cableType", "HDMI");
+        i.putExtra("cableLength", "2 Metres");
+        i.putExtra("cableDesc", "2 Metre long high quality shielded HDMI cable");
+        i.putExtra("cableCost", "5.00");
+
+        startActivity(i);
     }
 }

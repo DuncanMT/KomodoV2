@@ -23,7 +23,8 @@
         android:text="BUY"
         android:id="@+id/buyButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onBuyPressed"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,5 +97,7 @@
         android:id="@+id/costView"
         android:layout_alignTop="@+id/textView15"
         android:layout_alignStart="@+id/lengthView" />
+
+
 
 </RelativeLayout>
