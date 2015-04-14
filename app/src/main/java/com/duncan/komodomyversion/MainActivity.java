@@ -3,8 +3,8 @@ package com.duncan.komodomyversion;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 
 public class MainActivity extends ActionBarActivity implements
-    HomeFragment.OnFragmentInteractionListener,
     ProductsFragment.OnFragmentInteractionListener,
     LoginFragment.OnFragmentInteractionListener,
     RegisterFragment.OnFragmentInteractionListener{
@@ -35,10 +34,9 @@ public class MainActivity extends ActionBarActivity implements
         dlDrawer.setupDrawerConfiguration((ListView) findViewById(R.id.lvDrawer), toolbar,
                 R.layout.drawer_nav_item, R.id.flContent);
         // Add nav items
-        dlDrawer.addNavItem("Home",R.mipmap.ic_one, "Home", HomeFragment.class);
-        dlDrawer.addNavItem("Products",R.mipmap.ic_two, "Products", ProductsFragment.class);
-        dlDrawer.addNavItem("Login", R.mipmap.ic_three,"Login", LoginFragment.class);
-        dlDrawer.addNavItem("Register",R.mipmap.ic_four, "Register", RegisterFragment.class);
+        dlDrawer.addNavItem("Products",R.mipmap.ic_one, "Products", ProductsFragment.class);
+        dlDrawer.addNavItem("Login", R.mipmap.ic_two,"Login", LoginFragment.class);
+        dlDrawer.addNavItem("Register",R.mipmap.ic_three, "Register", RegisterFragment.class);
         // Select default
         if (savedInstanceState == null) {
             dlDrawer.selectDrawerItem(0);

@@ -25,10 +25,7 @@
             android:name=".ItemViewer"
             android:label="@string/title_activity_item_viewer" >
         </activity>
-        <activity
-            android:name="com.paypal.android.MEP.PayPalActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <service android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
 
