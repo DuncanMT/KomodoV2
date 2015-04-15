@@ -196,7 +196,7 @@ public class ProductsFragment extends Fragment {
 
     // build hash set for list view
     public void ListDrwaer() {
-        List<Map<String, String>> employeeList = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> cableList = new ArrayList<Map<String, String>>();
 
         try {
             JSONObject jsonResponse = new JSONObject(jsonResult);
@@ -207,14 +207,15 @@ public class ProductsFragment extends Fragment {
                 String name = jsonChildNode.optString("name");
                 String number = jsonChildNode.optString("cost");
                 String outPut = name + "-" + number;
-                employeeList.add(createEmployee("employees", outPut));
+                cableList.add(createEmployee("cable", outPut));
             }
         } catch (JSONException e) {
             Log.v("JSON", "ERROR");
         }
 
 
-        Log.v("HELLLLO", employeeList.get(0).toString());
+        Log.v("HELLLLO", cableList.get(0).toString());
+        Log.v("HELLLLO", cableList.get(1).toString());
     }
 
     private HashMap<String, String> createEmployee(String name, String number) {
