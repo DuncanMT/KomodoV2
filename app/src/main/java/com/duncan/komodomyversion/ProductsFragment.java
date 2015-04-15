@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +56,7 @@ public class ProductsFragment extends Fragment {
     private String mParam2;
 
     // TODO: Rename and change types of parameters
-
+    //private ListView listView;
     private String jsonResult;
     private OnFragmentInteractionListener mListener;
 
@@ -90,12 +91,17 @@ public class ProductsFragment extends Fragment {
 
         }
 
+       // listView = (ListView) getView().findViewById(R.id.listView1);
+        accessWebService();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //
+
         return inflater.inflate(R.layout.fragment_products, container, false);
     }
 
@@ -171,8 +177,7 @@ public class ProductsFragment extends Fragment {
 
             catch (IOException e) {
                 // e.printStackTrace();
-                Toast.makeText(getApplicationContext(),
-                        "Error..." + e.toString(), Toast.LENGTH_LONG).show();
+                Log.v("JSON", "ERROR");
             }
             return answer;
         }
@@ -195,24 +200,21 @@ public class ProductsFragment extends Fragment {
 
         try {
             JSONObject jsonResponse = new JSONObject(jsonResult);
-            JSONArray jsonMainNode = jsonResponse.optJSONArray("emp_info");
+            JSONArray jsonMainNode = jsonResponse.optJSONArray("product");
 
             for (int i = 0; i < jsonMainNode.length(); i++) {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                String name = jsonChildNode.optString("employee name");
-                String number = jsonChildNode.optString("employee no");
+                String name = jsonChildNode.optString("name");
+                String number = jsonChildNode.optString("cost");
                 String outPut = name + "-" + number;
                 employeeList.add(createEmployee("employees", outPut));
             }
         } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(), "Error" + e.toString(),
-                    Toast.LENGTH_SHORT).show();
+            Log.v("JSON", "ERROR");
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, employeeList,
-                android.R.layout.simple_list_item_1,
-                new String[] { "employees" }, new int[] { android.R.id.text1 });
-        listView.setAdapter(simpleAdapter);
+
+        Log.v("HELLLLO", employeeList.get(0).toString());
     }
 
     private HashMap<String, String> createEmployee(String name, String number) {
