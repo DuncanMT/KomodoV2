@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +83,21 @@ public class ProductsFragment extends Fragment {
     public ProductsFragment() {
         // Required empty public constructor
     }
+    private List<CableInfo> createList(int size) {
 
+        List<CableInfo> result = new ArrayList<CableInfo>();
+        for (int i=1; i <= size; i++) {
+            CableInfo ci = new CableInfo();
+            ci.title = CableInfo.TITLE_PREFIX + i;
+            ci.type = CableInfo.TYPE_PREFIX + i;
+            ci.price = CableInfo.PRICE_PREFIX + i;
+
+            result.add(ci);
+
+        }
+
+        return result;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +107,15 @@ public class ProductsFragment extends Fragment {
 
         }
 
+        View v = getView().findViewById(R.id.cardList);
+        RecyclerView recList = (RecyclerView) getView().findViewById(R.id.cardList);
+        recList.setHasFixedSize(true);
+        registerForContextMenu(recList);
+        LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
+        HomeViewAdapter ca = new HomeViewAdapter(getActivity(), createList(10));
+        recList.setAdapter(ca);
        // listView = (ListView) getView().findViewById(R.id.listView1);
         accessWebService();
 
@@ -102,7 +127,8 @@ public class ProductsFragment extends Fragment {
         // Inflate the layout for this fragment
         //
 
-        return inflater.inflate(R.layout.fragment_products, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_products, container, false);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -207,7 +233,7 @@ public class ProductsFragment extends Fragment {
                 String name = jsonChildNode.optString("name");
                 String number = jsonChildNode.optString("cost");
                 String outPut = name + "-" + number;
-                cableList.add(createEmployee("cable", outPut));
+                cableList.add(createCable("cable", outPut));
             }
         } catch (JSONException e) {
             Log.v("JSON", "ERROR");
@@ -218,7 +244,7 @@ public class ProductsFragment extends Fragment {
         Log.v("HELLLLO", cableList.get(1).toString());
     }
 
-    private HashMap<String, String> createEmployee(String name, String number) {
+    private HashMap<String, String> createCable(String name, String number) {
         HashMap<String, String> employeeNameNo = new HashMap<String, String>();
         employeeNameNo.put(name, number);
         return employeeNameNo;
