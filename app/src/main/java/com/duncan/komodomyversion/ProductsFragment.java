@@ -2,12 +2,11 @@ package com.duncan.komodomyversion;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,21 +82,7 @@ public class ProductsFragment extends Fragment {
     public ProductsFragment() {
         // Required empty public constructor
     }
-    private List<CableInfo> createList(int size) {
 
-        List<CableInfo> result = new ArrayList<CableInfo>();
-        for (int i=1; i <= size; i++) {
-            CableInfo ci = new CableInfo();
-            ci.title = CableInfo.TITLE_PREFIX + i;
-            ci.type = CableInfo.TYPE_PREFIX + i;
-            ci.price = CableInfo.PRICE_PREFIX + i;
-
-            result.add(ci);
-
-        }
-
-        return result;
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,18 +92,10 @@ public class ProductsFragment extends Fragment {
 
         }
 
-        View v = getView().findViewById(R.id.cardList);
-        RecyclerView recList = (RecyclerView) getView().findViewById(R.id.cardList);
-        recList.setHasFixedSize(true);
-        registerForContextMenu(recList);
-        LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        HomeViewAdapter ca = new HomeViewAdapter(getActivity(), createList(10));
-        recList.setAdapter(ca);
        // listView = (ListView) getView().findViewById(R.id.listView1);
         accessWebService();
-
+        Intent i = new Intent(getActivity(), ProductsView.class);
+        startActivity(i);
     }
 
     @Override
@@ -127,8 +104,7 @@ public class ProductsFragment extends Fragment {
         // Inflate the layout for this fragment
         //
 
-        View rootView = inflater.inflate(R.layout.fragment_products, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_products, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

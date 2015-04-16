@@ -18,8 +18,7 @@ public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.Contac
 
     private List<CableInfo> cableList;
     Context ctx;
-    public HomeViewAdapter(Context context, List<CableInfo> cableList) {
-        ctx = context;
+    public HomeViewAdapter(List<CableInfo> cableList) {
         this.cableList = cableList;
     }
 
