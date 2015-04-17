@@ -81,7 +81,7 @@ public class ProductsView extends Activity {
             ci = cList.get(i);
             ci.title = ci.getTitle();
             ci.type = ci.getType();
-            ci.price = ci.getPrice();
+            ci.price = "£"+ci.getPrice();
 
             result.add(ci);
 
@@ -187,17 +187,11 @@ public class ProductsView extends Activity {
 //                ci.setType("CABLE");
 //                ci.price = number;
 //                cList.add(ci);
-                cableList.add(createCable("cable", outPut));
-                cList.add(createCable3(name, number));
+                cList.add(createCable(name, number));
             }
         } catch (JSONException e) {
             Log.v("JSON", "ERROR");
         }
-
-
-        Log.v("HELLLLO", cableList.get(0).toString());
-        Log.v("HELLLLO", cableList.get(1).toString());
-        Log.v("ARRAYLIST: ", cList.get(0).title);
     }
 
     private ArrayList<CableInfo> createCable2 (String name, String number){
@@ -210,7 +204,7 @@ public class ProductsView extends Activity {
         return cList;
 
     }
-    private CableInfo createCable3 (String name, String number){
+    private CableInfo createCable(String name, String number){
         CableInfo ci = new CableInfo();
         ci.setTitle(name);
         ci.setPrice(number);
@@ -219,14 +213,5 @@ public class ProductsView extends Activity {
         return ci;
     }
 
-    private HashMap<String, String> createCable(String name, String number) {
-        HashMap<String, String> employeeNameNo = new HashMap<String, String>();
-        employeeNameNo.put(name, number);
-        ArrayList<CableInfo> cableList = new ArrayList<>();
-        CableInfo ci = new CableInfo();
-        ci.title = name;
-        ci.price = number;
-        cableList.add(ci);
-        return employeeNameNo;
-    }
+
 }
