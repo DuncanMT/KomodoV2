@@ -26,25 +26,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 public class ProductsView extends Activity {
+
     private String jsonResult;
     private ArrayList<CableInfo> cList = new ArrayList<>();
     View v;
     RecyclerView recList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         accessWebService();
-        Log.v("CLIST: ", "" + cList.size());
-        Log.v("CLIST: ", ""+jsonResult);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,11 +65,7 @@ public class ProductsView extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClick(View v){
 
-        int i = recList.getChildAdapterPosition(v);
-        Log.v("CLICK", ""+i);
-    }
     private List<CableInfo> createList(int size) {
 
         List<CableInfo> result = new ArrayList<CableInfo>();
@@ -130,12 +123,9 @@ public class ProductsView extends Activity {
         @Override
         protected void onPostExecute(String result) {
             ListDrwaer();
-
             setContentView(R.layout.activity_products_view);
-
             View v = findViewById(R.id.cardList);
             RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
-
             recList.setHasFixedSize(true);
             registerForContextMenu(recList);
             LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
@@ -147,7 +137,6 @@ public class ProductsView extends Activity {
             recList.addOnItemTouchListener(
                     new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
                         @Override public void onItemClick(View view, int position) {
-                           Log.v("TETETE:   ", ""+position);
                             Intent i = new Intent(getApplicationContext(), ItemViewer.class);
                             i.putExtra("cableTitle", cList.get(position).getTitle());
                             i.putExtra("cableType", cList.get(position).getType());
@@ -200,7 +189,6 @@ public class ProductsView extends Activity {
         ci.setTitle(name);
         ci.setPrice(number);
         ci.setType("HDMI");
-        Log.v("TEST: ", ci.title);
         return cList;
 
     }
@@ -209,7 +197,6 @@ public class ProductsView extends Activity {
         ci.setTitle(name);
         ci.setPrice(number);
         ci.setType("HDMI");
-        Log.v("TEST: ", ci.title);
         return ci;
     }
 
