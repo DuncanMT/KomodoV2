@@ -79,9 +79,9 @@ public class ProductsView extends Activity {
         for (int i=0; i <= size-1; i++) {
             CableInfo ci = new CableInfo();
             ci = cList.get(i);
-            ci.title = CableInfo.TITLE_PREFIX + ci.getTitle();
-            ci.type = CableInfo.TYPE_PREFIX + i;
-            ci.price = CableInfo.PRICE_PREFIX + ci.getPrice();
+            ci.title = ci.getTitle();
+            ci.type = ci.getType();
+            ci.price = ci.getPrice();
 
             result.add(ci);
 
