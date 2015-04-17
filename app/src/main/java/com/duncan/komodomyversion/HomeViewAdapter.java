@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -14,15 +15,13 @@ import java.util.List;
 /**
  * Created by alihassan on 16/04/2015.
  */
-public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.ContactViewHolder> {
+public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.ContactViewHolder>  {
 
     private List<CableInfo> cableList;
     Context ctx;
     public HomeViewAdapter(List<CableInfo> cableList) {
         this.cableList = cableList;
     }
-
-
     @Override
     public int getItemCount() {
         return cableList.size();
@@ -38,16 +37,28 @@ public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.Contac
 
     }
 
+
     @Override
     public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
         CableInfo ci = cableList.get(i);
+        final int position = i;
+        contactViewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.v("TOUCH: ", ""+position);
+                return false;
+            }
+        });
         contactViewHolder.vName.setText(ci.title);
         contactViewHolder.vSurname.setText(ci.type);
         //  contactViewHolder.vEmail.setText(ci.time);
         contactViewHolder.vTitle.setText(ci.price);
+
     }
 
-
+    public void onClick(View v){
+        Log.v("Clock", "Click");
+    }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 

@@ -1,6 +1,7 @@
 package com.duncan.komodomyversion;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -33,11 +34,13 @@ import java.util.Map;
 public class ProductsView extends Activity {
     private String jsonResult;
     private ArrayList<CableInfo> cList = new ArrayList<>();
+    View v;
+    RecyclerView recList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         accessWebService();
-        Log.v("CLIST: ", ""+cList.size());
+        Log.v("CLIST: ", "" + cList.size());
         Log.v("CLIST: ", ""+jsonResult);
 
     }
@@ -63,6 +66,12 @@ public class ProductsView extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View v){
+
+        int i = recList.getChildAdapterPosition(v);
+        Log.v("CLICK", ""+i);
     }
     private List<CableInfo> createList(int size) {
 
@@ -126,6 +135,7 @@ public class ProductsView extends Activity {
 
             View v = findViewById(R.id.cardList);
             RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
+
             recList.setHasFixedSize(true);
             registerForContextMenu(recList);
             LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
@@ -134,6 +144,21 @@ public class ProductsView extends Activity {
             HomeViewAdapter ca = new HomeViewAdapter(createList(cList.size()));
             recList.setAdapter(ca);
             registerForContextMenu(v);
+            recList.addOnItemTouchListener(
+                    new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                        @Override public void onItemClick(View view, int position) {
+                           Log.v("TETETE:   ", ""+position);
+                            Intent i = new Intent(getApplicationContext(), ItemViewer.class);
+                            i.putExtra("cableTitle", cList.get(position).getTitle());
+                            i.putExtra("cableType", cList.get(position).getType());
+                            i.putExtra("cableLength", "2 Metres");
+                            i.putExtra("cableDesc", "2 Metre long high quality shielded HDMI cable222");
+                            i.putExtra("cableCost", cList.get(position).getPrice());
+
+                            startActivity(i);
+                        }
+                    })
+            );
         }
     }// end async task
 
