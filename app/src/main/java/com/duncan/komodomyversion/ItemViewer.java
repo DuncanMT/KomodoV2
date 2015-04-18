@@ -176,6 +176,9 @@ public class ItemViewer extends Activity {
 
     private PayPalPayment getThingToBuy(String paymentIntent) {
         Intent i = getIntent();
+        BigDecimal bd = new BigDecimal(i.getStringExtra("cableCost"));
+
+        Log.v(""+bd,i.getStringExtra("cableTitle") );
         return new PayPalPayment(new BigDecimal(i.getStringExtra("cableCost")), "GBP", i.getStringExtra("cableTitle"),
                 paymentIntent);
     }

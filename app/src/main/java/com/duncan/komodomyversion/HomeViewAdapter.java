@@ -52,7 +52,7 @@ public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.Contac
         contactViewHolder.vName.setText(ci.title);
         contactViewHolder.vSurname.setText(ci.type);
         //  contactViewHolder.vEmail.setText(ci.time);
-        contactViewHolder.vTitle.setText(ci.price);
+        contactViewHolder.vTitle.setText("£"+ci.price);
 
     }
 

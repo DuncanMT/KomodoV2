@@ -74,7 +74,7 @@ public class ProductsView extends Activity {
             ci = cList.get(i);
             ci.title = ci.getTitle();
             ci.type = ci.getType();
-            ci.price = "£"+ci.getPrice();
+            ci.price = ci.getPrice();
 
             result.add(ci);
 
@@ -170,12 +170,6 @@ public class ProductsView extends Activity {
                 String name = jsonChildNode.optString("name");
                 String number = jsonChildNode.optString("cost");
                 String outPut = name + "-" + number;
-//                CableInfo ci = new CableInfo();
-//                ci.setTitle(name);
-//                ci.setPrice(number);
-//                ci.setType("CABLE");
-//                ci.price = number;
-//                cList.add(ci);
                 cList.add(createCable(name, number));
             }
         } catch (JSONException e) {
