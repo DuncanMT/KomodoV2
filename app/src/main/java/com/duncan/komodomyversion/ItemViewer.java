@@ -77,32 +77,34 @@ public class ItemViewer extends Activity {
 
     private void setFields() {
         Intent i = getIntent();
-        String cableType = i.getStringExtra("cableType");
+        String cableQuantity = i.getStringExtra("cableQuantity");
         String cableLength = i.getStringExtra("cableLength");
         String cableDesc = i.getStringExtra("cableDesc");
         String cableCost = i.getStringExtra("cableCost");
         String cableTitle = i.getStringExtra("cableTitle");
+        String imgURL = i.getStringExtra("imgURL");
 //        i.putExtra("cableType", "HDMI CABLE");
 //        i.putExtra("cableLength", "2 Metres");
 //        i.putExtra("cableDesc", "2 Metre long high quality shielded HDMI cable");
 //        i.putExtra("cableCost", "5.00");
         final TextView cableTitleView = (TextView)findViewById(R.id.cableTitleView);
         final TextView cableLengthView = (TextView)findViewById(R.id.lengthView);
-        final TextView cableTypeView = (TextView)findViewById(R.id.typeView);
+        final TextView cableQuantityView = (TextView)findViewById(R.id.typeView);
         // final TextView cableDescView = (TextView)findViewById(R.id.);
         final TextView cableCostView = (TextView)findViewById(R.id.costView);
-        Log.v(TAG, "3");
         cableTitleView.setText(cableTitle);
-        Log.v(TAG, "4");
         cableLengthView.setText(cableLength);
-        Log.v(TAG, "5");
         cableCostView.setText("£" + cableCost);
-        cableTypeView.setText(cableType);
+        if(Integer.parseInt(cableQuantity)==0){
+            cableQuantityView.setText("Out of stock");
+        } else {
+            cableQuantityView.setText(cableQuantity);
+        }
         ImageView productImage = (ImageView)findViewById(R.id.imageView);
         Drawable d;
-        d = LoadImageFromWebOperations("http://hometheaterreview.com/images/HDMIcable.jpg");
+        d = LoadImageFromWebOperations(imgURL);
         productImage.setImageDrawable(d);
-        productImage.setImageResource(R.drawable.hdmi);
+      //  productImage.setImageResource(R.drawable.hdmi);
     }
 
     public static Drawable LoadImageFromWebOperations(String url) {

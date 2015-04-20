@@ -139,10 +139,11 @@ public class ProductsView extends Activity {
                         @Override public void onItemClick(View view, int position) {
                             Intent i = new Intent(getApplicationContext(), ItemViewer.class);
                             i.putExtra("cableTitle", cList.get(position).getTitle());
-                            i.putExtra("cableType", cList.get(position).getQuantity());
+                            i.putExtra("cableQuantity", cList.get(position).getQuantity());
                             i.putExtra("cableLength", "2 Metres");
-                            i.putExtra("cableDesc", "2 Metre long high quality shielded HDMI cable222");
+                            i.putExtra("cableDesc", cList.get(position).getDescription());
                             i.putExtra("cableCost", cList.get(position).getPrice());
+                            i.putExtra("imgURL", cList.get(position).getImgURL());
 
                             startActivity(i);
                         }
