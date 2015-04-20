@@ -92,14 +92,17 @@ public class ItemViewer extends Activity {
         final TextView cableQuantityView = (TextView)findViewById(R.id.typeView);
         // final TextView cableDescView = (TextView)findViewById(R.id.);
         final TextView cableCostView = (TextView)findViewById(R.id.costView);
+        final TextView cableDescription = (TextView)findViewById(R.id.descView);
         cableTitleView.setText(cableTitle);
         cableLengthView.setText(cableLength);
         cableCostView.setText("£" + cableCost);
+        cableDescription.setText(cableDesc);
         if(Integer.parseInt(cableQuantity)==0){
             cableQuantityView.setText("Out of stock");
         } else {
             cableQuantityView.setText(cableQuantity);
         }
+
         ImageView productImage = (ImageView)findViewById(R.id.imageView);
         Drawable d;
         d = LoadImageFromWebOperations(imgURL);

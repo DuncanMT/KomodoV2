@@ -98,6 +98,15 @@
         android:layout_alignTop="@+id/textView15"
         android:layout_alignStart="@+id/lengthView" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Description"
+        android:id="@+id/descView"
+        android:layout_below="@+id/textView15"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_marginTop="26dp" />
 
 
 </RelativeLayout>
