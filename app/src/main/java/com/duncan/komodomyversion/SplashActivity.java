@@ -5,18 +5,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
 
 
 public class SplashActivity extends Activity {
 
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private ImageView imgView;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splash);
+        imgView = (ImageView) findViewById(R.id.splashscreen);
+        imgView.setScaleType(ImageView.ScaleType.FIT_XY);
         if(getActionBar()!= null){
             ActionBar actionBar = getActionBar();
             actionBar.hide();
