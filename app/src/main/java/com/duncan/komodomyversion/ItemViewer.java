@@ -110,8 +110,11 @@ public class ItemViewer extends Activity {
         ImageView productImage = (ImageView)findViewById(R.id.imageView);
         Drawable d;
         d = LoadImageFromWebOperations(imgURL);
-        productImage.setImageDrawable(d);
+//        productImage.setImageDrawable(d);
       //  productImage.setImageResource(R.drawable.hdmi);
+        new DownloadImageTask((ImageView) findViewById(R.id.imageView))
+                .execute(imgURL);
+
     }
 
     public static Drawable LoadImageFromWebOperations(String url) {
