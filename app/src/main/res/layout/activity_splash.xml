@@ -4,9 +4,10 @@
     android:layout_height="fill_parent">
 
 
-    <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:src="@mipmap/ic_launcher"
+    <ImageView android:id="@+id/splashscreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/splash"
         android:layout_gravity="center"/>
 
     <TextView android:layout_width="fill_parent"
