@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,6 +100,9 @@ public class ItemViewer extends Activity {
         cableDescription.setText(cableDesc);
         if(Integer.parseInt(cableQuantity)==0){
             cableQuantityView.setText("Out of stock");
+            Button b = (Button)findViewById(R.id.buyButton);
+            b.setText("OOS");
+            b.setClickable(false);
         } else {
             cableQuantityView.setText(cableQuantity);
         }
