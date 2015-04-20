@@ -73,7 +73,7 @@ public class ProductsView extends Activity {
             CableInfo ci = new CableInfo();
             ci = cList.get(i);
             ci.title = ci.getTitle();
-            ci.type = ci.getType();
+         //   ci.type = ci.getType();
             ci.price = ci.getPrice();
 
             result.add(ci);
@@ -139,7 +139,7 @@ public class ProductsView extends Activity {
                         @Override public void onItemClick(View view, int position) {
                             Intent i = new Intent(getApplicationContext(), ItemViewer.class);
                             i.putExtra("cableTitle", cList.get(position).getTitle());
-                            i.putExtra("cableType", cList.get(position).getType());
+                            i.putExtra("cableType", cList.get(position).getQuantity());
                             i.putExtra("cableLength", "2 Metres");
                             i.putExtra("cableDesc", "2 Metre long high quality shielded HDMI cable222");
                             i.putExtra("cableCost", cList.get(position).getPrice());
@@ -169,28 +169,35 @@ public class ProductsView extends Activity {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                 String name = jsonChildNode.optString("name");
                 String number = jsonChildNode.optString("cost");
+                String description = jsonChildNode.optString("description");
+                String imgURL = jsonChildNode.optString("fullurl");
+                String quantity = jsonChildNode.optString("quantity");
                 String outPut = name + "-" + number;
-                cList.add(createCable(name, number));
+                cList.add(createCable(name, number, description, imgURL, quantity));
             }
         } catch (JSONException e) {
             Log.v("JSON", "ERROR");
         }
     }
 
-    private ArrayList<CableInfo> createCable2 (String name, String number){
+    private ArrayList<CableInfo> createCable2 (String name, String number, String description, String imgURL, String quantity){
         ArrayList<CableInfo> cList = new ArrayList<>();
         CableInfo ci = new CableInfo();
         ci.setTitle(name);
         ci.setPrice(number);
-        ci.setType("HDMI");
+        ci.setDescription(description);
+        ci.setImgURL(imgURL);
+        ci.setQuantity(quantity);
         return cList;
 
     }
-    private CableInfo createCable(String name, String number){
+    private CableInfo createCable(String name, String number, String description, String imgURL, String quantity){
         CableInfo ci = new CableInfo();
         ci.setTitle(name);
         ci.setPrice(number);
-        ci.setType("HDMI");
+        ci.setDescription(description);
+        ci.setImgURL(imgURL);
+        ci.setQuantity(quantity);
         return ci;
     }
 

@@ -5,19 +5,42 @@ package com.duncan.komodomyversion;
  */
 public class CableInfo {
     protected String title;
-    protected String type;
     protected String price;
+    protected String description;
+    protected String quantity;
+    protected String imgURL;
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getImgURL() {
+        return this.imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
-    public String getType() {
-        return type;
-    }
 
     public String getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setTitle(String title) {
@@ -25,9 +48,6 @@ public class CableInfo {
         this.title = title;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public void setPrice(String price) {
         this.price = price;

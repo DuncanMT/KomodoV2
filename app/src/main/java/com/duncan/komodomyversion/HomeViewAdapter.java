@@ -50,7 +50,11 @@ public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.Contac
             }
         });
         contactViewHolder.vName.setText(ci.title);
-        contactViewHolder.vSurname.setText(ci.type);
+        if (Integer.parseInt(ci.quantity)  == 0 ){
+            contactViewHolder.vSurname.setText("Out of stock");
+        } else {
+            contactViewHolder.vSurname.setText(ci.quantity + " left");
+        }
         //  contactViewHolder.vEmail.setText(ci.time);
         contactViewHolder.vTitle.setText("£"+ci.price);
 
