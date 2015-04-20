@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:onClick="login"
-            android:id="@+id/login"
+            android:id="@+id/btnLogin"
             android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="58dp" />
@@ -63,7 +63,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Login"
             android:id="@+id/Status"
-            android:layout_below="@+id/login"
+            android:layout_below="@+id/btnLogin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="101dp" />
 

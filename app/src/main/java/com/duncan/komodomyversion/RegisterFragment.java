@@ -1,9 +1,7 @@
 package com.duncan.komodomyversion;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,15 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URI;
 
 
 /**
@@ -82,7 +71,7 @@ public class RegisterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        Button button = (Button) view.findViewById(R.id.register);
+        Button button = (Button) view.findViewById(R.id.btnRegister);
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -108,7 +97,7 @@ public class RegisterFragment extends Fragment {
                 String address = addressField.getText().toString();
                 String postcode = postcodeField.getText().toString();
                 String town = townField.getText().toString();
-                new RegisterActivity(getActivity(), Status, role).execute(username, firstname, surname, email, password, address, postcode, town);
+                //new RegisterActivity(getActivity(), Status, role).execute(username, firstname, surname, email, password, address, postcode, town);
 
             }
         });
@@ -156,51 +145,4 @@ public class RegisterFragment extends Fragment {
 
 }
 
-class RegisterActivity extends AsyncTask<String, Void, String> {
 
-    private TextView statusField, roleField;
-    private Context context;
-
-    public RegisterActivity(Context context, TextView statusField, TextView roleField) {
-        this.context = context;
-        this.statusField = statusField;
-        this.roleField = roleField;
-    }
-
-    @Override
-    protected String doInBackground(String... arg0) {
-        try {
-            String username =  arg0[0];
-            String firstname =  arg0[1];
-            String surname = arg0[2];
-            String email =  arg0[3];
-            String password =  arg0[4];
-            String address =  arg0[5];
-            String postcode =  arg0[6];
-            String town = arg0[7];
-            String link = "http://alihassan.co/register.php?username="+ username +"&firstname="
-                    + firstname +"&surname="+ surname +"&email="+ email+"&password="
-                    + password+"&address="+ address+"&postcode="+ postcode +"&town="+ town;
-            HttpClient client = new DefaultHttpClient();
-            HttpGet request = new HttpGet();
-            request.setURI(new URI(link));
-            HttpResponse response = client.execute(request);
-            BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            StringBuffer sb = new StringBuffer("");
-            String line;
-            while ((line = in.readLine()) != null) {
-                sb.append(line);
-                break;
-            }
-            in.close();
-            return sb.toString();
-        } catch (Exception e) {
-            return new String("Exception: " + e.getMessage());
-        }
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-
-    }
-}

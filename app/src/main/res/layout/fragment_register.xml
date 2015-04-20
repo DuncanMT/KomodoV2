@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:id="@+id/register"
+            android:id="@+id/btnRegister"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:onClick="register" />
@@ -182,7 +182,7 @@
             android:ems="10"
             android:id="@+id/confirm_password"
             android:layout_alignTop="@+id/textView11"
-            android:layout_alignStart="@+id/register" />
+            android:layout_alignStart="@+id/btnRegister" />
 
     </RelativeLayout>
 </FrameLayout>

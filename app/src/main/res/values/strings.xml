@@ -12,5 +12,7 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_item_viewer">ItemViewer</string>
     <string name="title_activity_products_view">ProductsView</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
 
 </resources>
