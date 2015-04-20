@@ -14,8 +14,9 @@ import android.widget.ListView;
 
 
 public class MainActivity extends ActionBarActivity implements
-    ProductsFragment.OnFragmentInteractionListener
-    {
+    ProductsFragment.OnFragmentInteractionListener,
+    LoginFragment.OnFragmentInteractionListener,
+    RegisterFragment.OnFragmentInteractionListener{
     private FragmentNavigationDrawer dlDrawer;
 
     @Override
@@ -34,7 +35,8 @@ public class MainActivity extends ActionBarActivity implements
                 R.layout.drawer_nav_item, R.id.flContent);
         // Add nav items
         dlDrawer.addNavItem("Products",R.mipmap.ic_one, "Products", ProductsFragment.class);
-
+        dlDrawer.addNavItem("Login", R.mipmap.ic_two,"Login", LoginFragment.class);
+        dlDrawer.addNavItem("Register",R.mipmap.ic_three, "Register", RegisterFragment.class);
         // Select default
         if (savedInstanceState == null) {
             dlDrawer.selectDrawerItem(0);
