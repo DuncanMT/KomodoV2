@@ -1,6 +1,5 @@
 package com.duncan.komodomyversion;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 
 
@@ -90,7 +88,7 @@ public class MainActivity extends ActionBarActivity implements
 
     }
 
-    public void test2(View v){
+  /*  public void test2(View v){
         Intent i = new Intent(v.getContext(), ItemViewer.class);
         i.putExtra("cableTitle", "Monster HDMI 2m 1.4");
         i.putExtra("cableType", "HDMI");
@@ -99,5 +97,5 @@ public class MainActivity extends ActionBarActivity implements
         i.putExtra("cableCost", "5.00");
 
         startActivity(i);
-    }
+    }*/
 }

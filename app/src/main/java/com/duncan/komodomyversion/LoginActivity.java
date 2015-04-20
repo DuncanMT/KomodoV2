@@ -1,11 +1,9 @@
 package com.duncan.komodomyversion;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,7 +76,7 @@ class LoginTask extends AsyncTask<String, String, String> {
             request.setURI(new URI(link));
             HttpResponse response = client.execute(request);
             BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            StringBuffer sb = new StringBuffer("");
+            StringBuilder sb = new StringBuilder("");
             String line;
             while ((line = in.readLine()) != null) {
                 sb.append(line);

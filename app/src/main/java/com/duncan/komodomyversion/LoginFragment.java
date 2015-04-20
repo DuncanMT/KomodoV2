@@ -162,7 +162,7 @@ class SignInActivity extends AsyncTask<String, Void, String> {
             request.setURI(new URI(link));
             HttpResponse response = client.execute(request);
             BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            StringBuffer sb = new StringBuffer("");
+            StringBuilder sb = new StringBuilder("");
             String line;
             while ((line = in.readLine()) != null) {
                 sb.append(line);
@@ -171,7 +171,7 @@ class SignInActivity extends AsyncTask<String, Void, String> {
             in.close();
             return sb.toString();
         } catch (Exception e) {
-            return new String("Exception: " + e.getMessage());
+            return "Exception: " + e.getMessage();
         }
     }
 
