@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +15,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -113,6 +109,7 @@ class LoginTask extends AsyncTask<String, String, String> {
                 sb.append(line);
                 break;
             }
+
             in.close();
             if(sb.toString().equals(""))
             {
@@ -129,7 +126,6 @@ class LoginTask extends AsyncTask<String, String, String> {
     protected void onPostExecute(String result) {
         Toast.makeText(activity, result, Toast.LENGTH_SHORT).show();
         if(result.equals("Login Successful")){
-            Log.d("JSON", usernameSave);
             LoginState.setUserName(activity, usernameSave );
             Intent mainIntent = new Intent(activity, ProductsView.class);
             activity.startActivity(mainIntent);

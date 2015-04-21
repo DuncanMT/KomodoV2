@@ -3,7 +3,6 @@ package com.duncan.komodomyversion;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,6 +79,7 @@ public class RegisterActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            this.finish();
             return true;
         }
 
@@ -139,7 +139,6 @@ class RegisterTask extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Log.d("RegisterResult", result);
         Toast.makeText(activity, result, Toast.LENGTH_SHORT).show();
     }
 }
