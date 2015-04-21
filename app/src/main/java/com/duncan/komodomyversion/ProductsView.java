@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -29,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class ProductsView extends Activity {
+public class ProductsView extends ActionBarActivity {
 
     private String jsonResult;
     private ArrayList<CableInfo> cList = new ArrayList<>();
@@ -39,6 +41,14 @@ public class ProductsView extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+
+        if(LoginState.getUserName(ProductsView.this).length() == 0)
+        {
+            Intent mainIntent = new Intent(ProductsView.this, LoginActivity.class);
+            ProductsView.this.startActivity(mainIntent);
+            ProductsView.this.finish();
+        }
         accessWebService();
     }
 
@@ -57,7 +67,11 @@ public class ProductsView extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            LoginState.clearUserName(this);
+            Intent mainIntent = new Intent(ProductsView.this, LoginActivity.class);
+            ProductsView.this.startActivity(mainIntent);
+            ProductsView.this.finish();
             return true;
         }
 
