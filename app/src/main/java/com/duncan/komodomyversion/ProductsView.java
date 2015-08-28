@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class ProductsView extends ActionBarActivity {
 
-    private String jsonResult;
+    private String jsonResult= "";
     private ArrayList<CableInfo> cList = new ArrayList<>();
     View v;
     RecyclerView recList;
@@ -79,9 +79,9 @@ public class ProductsView extends ActionBarActivity {
 
     private List<CableInfo> createList(int size) {
 
-        List<CableInfo> result = new ArrayList<CableInfo>();
+        List<CableInfo> result = new ArrayList<>();
         for (int i=0; i <= size-1; i++) {
-            CableInfo ci = new CableInfo();
+            CableInfo ci;
             ci = cList.get(i);
             ci.title = ci.getTitle();
          //   ci.type = ci.getType();
@@ -104,17 +104,14 @@ public class ProductsView extends ActionBarActivity {
                 jsonResult = inputStreamToString(
                         response.getEntity().getContent()).toString();
             }
-
-            catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            catch (IOException e) {
                 e.printStackTrace();
             }
             return null;
         }
 
         private StringBuilder inputStreamToString(InputStream is) {
-            String rLine = "";
+            String rLine;
             StringBuilder answer = new StringBuilder();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
 
@@ -166,12 +163,12 @@ public class ProductsView extends ActionBarActivity {
     public void accessWebService() {
         JsonReadTask task = new JsonReadTask();
         // passes values for the urls string array
-        task.execute(new String[] { "http://alihassan.co/getitem.php?" });
+        task.execute("http://alihassan.co/getitem.php?");
     }
 
     // build hash set for list view
     public void ListDrwaer() {
-        List<Map<String, String>> cableList = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> cableList = new ArrayList<>();
        // ArrayList<CableInfo> cList = new ArrayList<>();
         try {
             JSONObject jsonResponse = new JSONObject(jsonResult);
